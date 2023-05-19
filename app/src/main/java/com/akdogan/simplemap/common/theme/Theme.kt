@@ -1,4 +1,4 @@
-package com.akdogan.simplemap.ui.theme
+package com.akdogan.simplemap.common.theme
 
 import android.app.Activity
 import android.os.Build
