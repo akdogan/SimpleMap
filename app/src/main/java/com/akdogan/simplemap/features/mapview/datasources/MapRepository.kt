@@ -3,6 +3,7 @@ package com.akdogan.simplemap.features.mapview.datasources
 import com.akdogan.simplemap.BuildConfig
 import com.akdogan.simplemap.common.api.HeaderAuthorizationInterceptor
 import com.akdogan.simplemap.common.api.getApiInstance
+import com.akdogan.simplemap.features.mapview.Point
 import com.akdogan.simplemap.features.mapview.datasources.remote.FourSquareApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -18,14 +19,15 @@ class MapRepository {
         interceptors = listOf(HeaderAuthorizationInterceptor(BuildConfig.FOURSQUARE_API_KEY))
     )
 
-    suspend fun getPointsOfInterest() = withContext(Dispatchers.IO) {
-        Timber.d("Repo injected succesfully")
+    suspend fun getPointsOfInterest(location: Point) = withContext(Dispatchers.IO) {
         try {
-            val result = api.getNearby("52.500342,13.425170")
+            val result = api.getNearby(location.toQueryParameter())
             Timber.d("Repo remote call done with $result")
 
         } catch (e: Exception) {
             Timber.w("Call failed with $e", e)
         }
     }
+
+    private fun Point.toQueryParameter(): String = "${this.latitude},${this.longitude}"
 }
