@@ -28,6 +28,4 @@ class MapRepository {
             Timber.w("Call failed with $e", e)
         }
     }
-
-    private fun Point.toQueryParameter(): String = "${this.latitude},${this.longitude}"
 }
