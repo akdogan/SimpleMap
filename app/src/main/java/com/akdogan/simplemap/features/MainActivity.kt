@@ -1,4 +1,4 @@
-package com.akdogan.simplemap
+package com.akdogan.simplemap.features
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -31,6 +31,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        mapViewModel.test()
     }
 }
 
