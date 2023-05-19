@@ -29,6 +29,13 @@ android {
         debug {
             minifyEnabled false
             debuggable true
+
+            Properties properties = new Properties()
+            if (project.rootProject.file('local.properties').canRead()) {
+                properties.load(project.rootProject.file("local.properties").newDataInputStream())
+            }
+
+            buildConfigField 'String', 'FOURSQUARE_API_KEY', properties.getProperty('foursquare_api_key', '""')
         }
     }
     compileOptions {
