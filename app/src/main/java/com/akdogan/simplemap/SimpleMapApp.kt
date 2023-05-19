@@ -11,6 +11,10 @@ class SimpleMapApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // check if api key was added
+        val key = BuildConfig.FOURSQUARE_API_KEY
+        if (key.isBlank()) throw IllegalStateException("Api key not found. Make sure to add it to the local.properties. See read.me for more info")
+
         // Initiate DI
         startKoin {
             androidContext(this@SimpleMapApp)
