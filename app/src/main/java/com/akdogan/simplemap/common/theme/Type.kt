@@ -1,4 +1,4 @@
-package com.akdogan.simplemap.ui.theme
+package com.akdogan.simplemap.common.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
