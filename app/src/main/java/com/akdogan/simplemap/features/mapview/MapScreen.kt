@@ -18,6 +18,7 @@ fun MapScreen(
     mapState: MapStateHolder,
     getLayoutInflater: () -> LayoutInflater
 ) {
+    // todo show a loading indicator
     Column(
         modifier = Modifier
             .fillMaxWidth()

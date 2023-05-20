@@ -11,7 +11,6 @@ import kotlinx.coroutines.withContext
 
 class MapRepository {
 
-
     private val api: FourSquareApi = getApiInstance(
         baseUrl = FOURSQUARE_BASE_URL,
         serviceClass = FourSquareApi::class.java,
@@ -19,14 +18,23 @@ class MapRepository {
     )
 
     @Throws
+    /**
+     * retrieves a set of POIs from around the location
+     * Caller is responsible for catching any exceptions!
+     */
     suspend fun getPointsOfInterest(location: Point): List<Location> = withContext(Dispatchers.IO) {
-        val result = api.getNearby(queryLocation = location.toQueryParameter(), fields = DEFAULT_FIELDS)
+        val result = api.getNearby(
+            queryLocation = location.toQueryParameter(),
+            limit = DEFAULT_LIMIT,
+            fields = DEFAULT_FIELDS
+        )
         return@withContext result.toDomain()
     }
 
     companion object {
         const val FOURSQUARE_BASE_URL = "https://api.foursquare.com/"
         const val DEFAULT_FIELDS = "name,geocodes,website,description,location,photos,link"
+        const val DEFAULT_LIMIT = 50
         const val DEFAULT_PHOTO_SIZE = "300x300"
     }
 }

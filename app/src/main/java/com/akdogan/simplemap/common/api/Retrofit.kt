@@ -21,7 +21,8 @@ private val loggingInterceptor = HttpLoggingInterceptor().apply {
  * creates a retrofit api client
  * @param baseUrl the base url for this client
  * @param serviceClass the retrofit interface class
- * @param interceptors optional interceptors that should be added
+ * @param interceptors optional interceptors that should be added (as a list because maybe we want
+ * to add more in the future)
  */
 fun <T> getApiInstance(
     baseUrl: String,

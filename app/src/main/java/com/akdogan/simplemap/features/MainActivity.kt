@@ -22,8 +22,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            // TODO currently there is no navigation.
+            // If we need more screens, we could use fragments or compose navigation
             SimpleMapTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -45,21 +46,5 @@ class MainActivity : ComponentActivity() {
     override fun onPause() {
         super.onPause()
         mapViewModel.onPause()
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SimpleMapTheme {
-        Greeting("Android")
     }
 }

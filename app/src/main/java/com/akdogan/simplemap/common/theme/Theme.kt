@@ -43,7 +43,8 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun SimpleMapTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    // todo dark theme looks rather ugly unfortunately, lets disable it for now
+    darkTheme: Boolean = false,
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
