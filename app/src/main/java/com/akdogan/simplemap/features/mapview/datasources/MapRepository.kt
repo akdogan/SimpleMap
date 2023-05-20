@@ -27,5 +27,6 @@ class MapRepository {
     companion object {
         const val FOURSQUARE_BASE_URL = "https://api.foursquare.com/"
         const val DEFAULT_FIELDS = "name,geocodes,website,description,location,photos,link"
+        const val DEFAULT_PHOTO_SIZE = "300x300"
     }
 }
