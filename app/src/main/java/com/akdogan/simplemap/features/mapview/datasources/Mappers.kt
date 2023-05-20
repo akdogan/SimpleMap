@@ -26,6 +26,10 @@ fun PlaceEntityRemote.toDomain(): Location? {
         // required
         name = name ?: return null,
         // optional
-        link = link.orEmpty()
+        link = if (link == null) "" else "${MapRepository.FOURSQUARE_BASE_URL}${link}",
+        // optional
+        address = this.location?.address.orEmpty(),
+        // optional
+        city = "${location?.locality.orEmpty()} ${location?.postcode.orEmpty()}".trim()
     )
 }
