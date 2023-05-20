@@ -2,7 +2,6 @@ package com.akdogan.simplemap.features.mapview.composables
 
 import android.content.ClipData
 import android.content.ClipboardManager
-import androidx.core.content.getSystemService
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,15 +16,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.getSystemService
 import com.akdogan.simplemap.common.theme.SimpleMapTheme
 import com.akdogan.simplemap.features.mapview.domainmodel.Location
 import com.akdogan.simplemap.features.mapview.domainmodel.Point
+import timber.log.Timber
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -39,17 +37,22 @@ fun DetailCard(
         .background(shape = RoundedCornerShape(6.dp), color = Color.White),
         onClick = {
             val clipboardManager = application.getSystemService<ClipboardManager>()
+            Timber.d("copying to clipboard, link: ${item.link}")
             val clip: ClipData = ClipData.newPlainText("Label", item.link)
             clipboardManager?.setPrimaryClip(clip)
             // todo show a toast if os is < Android 13 (from Android 13 on clipboard manager is shown)
         }
     ) {
-        Row(modifier = Modifier.padding(12.dp)){
+        Row(modifier = Modifier.padding(12.dp)) {
             Column {
                 Text(
                     text = item.name,
-                    style = MaterialTheme.typography.headlineSmall
-//                    fontWeight = FontWeight.Bold
+                    style = MaterialTheme
+                        .typography
+                        .headlineSmall
+                        .copy(
+                            fontSize = MaterialTheme.typography.bodyMedium.fontSize
+                        )
                 )
                 Text(
                     text = item.address,
@@ -68,11 +71,12 @@ fun DetailCard(
 @Composable
 fun DetailCardPreview() {
     SimpleMapTheme {
-        Column(modifier = Modifier
-            .fillMaxSize()
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
         ) {
             val item = Location(
-                point = Point(0.0,0.0),
+                point = Point(0.0, 0.0),
                 name = "Super nices cafe",
                 link = "http://www.google.com",
                 address = "Neue Strasse 1",

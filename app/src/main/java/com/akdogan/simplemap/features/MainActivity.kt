@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        mapViewModel.loadData()
+        mapViewModel.initialLoad()
     }
 
     override fun onResume() {

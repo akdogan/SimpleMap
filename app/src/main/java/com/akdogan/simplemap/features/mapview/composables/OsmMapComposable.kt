@@ -9,7 +9,9 @@ import androidx.core.graphics.drawable.DrawableCompat
 import com.akdogan.simplemap.BuildConfig
 import com.akdogan.simplemap.R
 import com.akdogan.simplemap.features.mapview.MapStateHolder
+import com.akdogan.simplemap.features.mapview.MapViewModel
 import com.akdogan.simplemap.features.mapview.domainmodel.Location
+import com.akdogan.simplemap.features.mapview.domainmodel.toOsmPoint
 import org.osmdroid.config.Configuration
 import org.osmdroid.events.MapListener
 import org.osmdroid.events.ScrollEvent
@@ -40,6 +42,7 @@ fun OsmMap(
 
             val mapController = mapView.controller
             mapController.setZoom(initialZoomLevel)
+            mapController.setCenter(MapViewModel.initialCenter.toOsmPoint())
             mapView.minZoomLevel = minZoomLevel
             mapView.isTilesScaledToDpi = true
 
@@ -57,11 +60,7 @@ fun OsmMap(
             } else {
                 mapView.onPause()
             }
-            // react to events from outside and scroll the map to the new center
-            if (mapState.scrollToPoint.value != null) {
-                mapView.controller.setCenter(mapState.scrollToPoint.value)
-                mapState.scrollToPoint.value = null
-            }
+
             mapView.addPins(mapState.locations.toList()) { selectedLocation ->
                 mapState.selectedLocation.value = selectedLocation
             }
