@@ -24,11 +24,9 @@ class MapViewModel(
         viewModelScope.launch {
             Timber.d("Adding test locations")
             mapStateHolder.scrollToPoint(initialCenter)
-            mapStateHolder.locations.addAll(getTestEntitys())
 
             try {
                 val result = mapRepository.getPointsOfInterest(initialCenter)
-                delay(2000)
                 mapStateHolder.locations.addAll(result)
             } catch (e: Exception) {
                 // todo show a snackbar to the user if retrieving data fails
@@ -44,10 +42,4 @@ class MapViewModel(
     fun onPause() {
         mapStateHolder.applicationIsActive.value = false
     }
-
-    private fun getTestEntitys(): List<Location> = listOf(
-        Location(point = Point(52.512149, 13.402366), "Nice Cafe", link = ""),
-        Location(point = Point(52.512451, 13.402569), "Nice Restaurant", link = ""),
-        Location(point = Point(52.512747, 13.402962), "Random Spaeti", link = "")
-    )
 }
