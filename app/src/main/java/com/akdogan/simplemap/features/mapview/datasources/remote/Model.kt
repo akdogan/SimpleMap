@@ -12,5 +12,25 @@ data class PlacesRemote(
 @Serializable
 data class PlaceEntityRemote(
     @SerialName("fsq_id")
-    val id: String? = null
+    val id: String? = null,
+    @SerialName("geocodes")
+    val geoLocations: GeoLocations? = null,
+    @SerialName("name")
+    val name: String? = null,
+    @SerialName("link")
+    val link: String? = null,
+)
+
+@Serializable
+data class GeoLocations(
+    @SerialName("main")
+    val main: PointRemote? = null
+)
+
+@Serializable
+data class PointRemote(
+    @SerialName("latitude")
+    val latitude: Double? = null,
+    @SerialName("longitude")
+    val longitude: Double? = null
 )

@@ -11,12 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.akdogan.simplemap.common.theme.SimpleMapTheme
+import com.akdogan.simplemap.features.mapview.MapScreen
 import com.akdogan.simplemap.features.mapview.MapViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
 
-    val mapViewModel: MapViewModel by viewModel()
+    private val mapViewModel: MapViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,11 +28,23 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    MapScreen(mapState = mapViewModel.mapStateHolder) {
+                        layoutInflater
+                    }
                 }
             }
         }
-        mapViewModel.test()
+        mapViewModel.loadData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mapViewModel.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapViewModel.onPause()
     }
 }
 
