@@ -5,5 +5,6 @@ data class Location(
     val name: String,
     val link: String,
     val address: String,
-    val city: String
+    val city: String,
+    val photoLink: String?
 )

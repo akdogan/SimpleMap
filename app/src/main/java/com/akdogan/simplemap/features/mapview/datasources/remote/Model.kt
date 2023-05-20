@@ -23,6 +23,8 @@ data class PlaceEntityRemote(
     val link: String? = null,
     @SerialName("location")
     val location: Location? = null,
+    @SerialName("photos")
+    val photos: List<Photo>? = null,
 )
 
 @Serializable

@@ -3,11 +3,13 @@ package com.akdogan.simplemap.features.mapview.composables
 import android.content.ClipData
 import android.content.ClipboardManager
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,9 +25,11 @@ import androidx.core.content.getSystemService
 import com.akdogan.simplemap.common.theme.SimpleMapTheme
 import com.akdogan.simplemap.features.mapview.domainmodel.Location
 import com.akdogan.simplemap.features.mapview.domainmodel.Point
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 import timber.log.Timber
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
 @Composable
 fun DetailCard(
     modifier: Modifier = Modifier,
@@ -43,7 +47,12 @@ fun DetailCard(
             // todo show a toast if os is < Android 13 (from Android 13 on clipboard manager is shown)
         }
     ) {
-        Row(modifier = Modifier.padding(12.dp)) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
             Column {
                 Text(
                     text = item.name,
@@ -63,6 +72,13 @@ fun DetailCard(
                     style = MaterialTheme.typography.bodySmall
                 )
             }
+            if (item.photoLink != null) {
+                GlideImage(
+                    modifier = Modifier.size(72.dp),
+                    model = item.photoLink,
+                    contentDescription = ""
+                )
+            }
         }
     }
 }
@@ -80,7 +96,8 @@ fun DetailCardPreview() {
                 name = "Super nices cafe",
                 link = "http://www.google.com",
                 address = "Neue Strasse 1",
-                city = "Berlin 10179"
+                city = "Berlin 10179",
+                photoLink = null
             )
             DetailCard(
                 modifier = Modifier.padding(10.dp),
