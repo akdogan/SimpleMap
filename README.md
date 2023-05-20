@@ -3,14 +3,19 @@ The app requires a foursquare api key. Put it into the `local.properties` file:
 ```
 foursquare_api_key="your_api_key"
 ```
-Important: The app will not start if there is no api key
+__Important:__ The app will crash if there is no api key
 
 ## Basic setup
 The app is structured following the MVVM pattern.
+
 Every screen (there is only one currently) has its own ViewModel.
+
 The ViewModel retrieves data from remote or local via a Repository.
+
 Data models are strictly kept within their respective domain, for example remote models are never used in the viewmodel or in the ui directly.
+
 Compose states that should survive configuration changes are bundled in a state holder class, which itself lives in the viewmodel.
+
 Koin was used for dependency injection.
 
 ## External Libraries
