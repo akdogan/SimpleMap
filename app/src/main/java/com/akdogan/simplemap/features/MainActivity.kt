@@ -22,6 +22,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            // TODO currently there is no navigation.
+            // If we need more screens, we could use fragments or compose navigation
             SimpleMapTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
