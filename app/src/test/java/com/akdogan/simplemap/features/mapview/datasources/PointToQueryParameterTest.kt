@@ -1,6 +1,6 @@
 package com.akdogan.simplemap.features.mapview.datasources
 
-import com.akdogan.simplemap.features.mapview.Point
+import com.akdogan.simplemap.features.mapview.domainmodel.Point
 import com.google.common.truth.Truth
 import org.junit.Test
 
