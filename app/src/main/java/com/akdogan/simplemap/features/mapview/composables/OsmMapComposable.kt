@@ -20,6 +20,10 @@ import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 
+/**
+ * @param getLayoutInflator needs a layoutinflator. pass it by lambda instead of directly, to avoid
+ * leaks or outdated references. Probably not necessary but better safe then sorry
+ */
 @Composable
 fun OsmMap(
     modifier: Modifier = Modifier,
@@ -45,6 +49,7 @@ fun OsmMap(
             mapController.setCenter(MapViewModel.initialCenter.toOsmPoint())
             mapView.minZoomLevel = minZoomLevel
             mapView.isTilesScaledToDpi = true
+            mapView.setMultiTouchControls(true)
 
             mapView.setUpdateMapCenterListener { center ->
                 mapState.currentCenter.value = center
@@ -117,7 +122,7 @@ private fun MapView.addPins(
             // set focused style
             DrawableCompat.setTint(
                 currentMarker.icon,
-                ContextCompat.getColor(context, R.color.aquamarine)
+                ContextCompat.getColor(context, R.color.dark_red)
             )
 
             mapView.controller.animateTo(

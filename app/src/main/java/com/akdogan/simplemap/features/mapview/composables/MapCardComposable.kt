@@ -23,14 +23,14 @@ fun MapCard(
             OsmMap(mapState = mapState, getLayoutInflator = getLayoutInflater)
         }
         if (mapState.showSearchButton.value) {
-            // todo animated visibilty would be nice
+            // todo animated visibility would be nice
             Button(
                 modifier = Modifier
                     .padding(top = 24.dp)
                     .align(Alignment.TopCenter),
                 onClick = { mapState.onSearchClicked() })
             {
-                // todo: hardcoded string!!
+                // todo hardcoded strings are not translatable
                 Text("Search here")
             }
         }
