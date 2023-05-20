@@ -5,7 +5,7 @@ foursquare_api_key="your_api_key"
 ```
 __Important:__ The app will crash if there is no api key
 
-## Basic setup
+## App Structure
 The app is structured following the MVVM pattern.
 
 Every screen (there is only one currently) has its own ViewModel.
@@ -27,3 +27,4 @@ Koin was used for dependency injection.
 - [OkHttp](https://square.github.io/okhttp/) Already included through retrofit, but the dependency is required for adding interceptors and configuring the serializer
 - [Retrofit2-kotlinx-serialization-converter](https://github.com/JakeWharton/retrofit2-kotlinx-serialization-converter) Retrofit does not have built in support for kotlinx serialization (yet)
 - [Glide](https://github.com/bumptech/glide) Image Loading
+- [Truth](https://github.com/google/truth) For Unit Test Assertions
